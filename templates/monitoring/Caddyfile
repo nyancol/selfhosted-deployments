@@ -1,0 +1,44 @@
+:8080 {
+    reverse_proxy host.docker.internal:2283
+
+    encode gzip zstd
+
+    header {
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+    }
+
+    log {
+        output file /data/access.log
+        format json
+    }
+}
+
+:8081 {
+    reverse_proxy host.docker.internal:8081
+
+    encode gzip zstd
+
+    header {
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+    }
+
+    log {
+        output file /data/access.log
+        format json
+    }
+}
+
+:8082 {
+    reverse_proxy host.docker.internal:19999
+    encode gzip zstd
+
+    header {
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+    }
+}
