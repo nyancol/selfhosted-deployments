@@ -58,6 +58,7 @@ services:
       - portainer_data:/data
     ports:
       - 9443:9443
+      - 9000:9000
 
 volumes:
   netdataconfig:

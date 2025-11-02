@@ -42,3 +42,14 @@
         Referrer-Policy "no-referrer"
     }
 }
+
+:8083 {
+    reverse_proxy host.docker.internal:9000
+    encode gzip zstd
+
+    header {
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+    }
+}
