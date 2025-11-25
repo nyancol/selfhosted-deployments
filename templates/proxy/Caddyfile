@@ -1,0 +1,80 @@
+# IMMICH DEPLOYMENT
+:8080 {
+    reverse_proxy immich-server:2283
+
+    encode gzip zstd
+
+    header {
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+    }
+
+    log {
+        output file /data/access.log
+        format json
+    }
+}
+
+# ACTIVEPIECES DEPLOYMENT
+:8081 {
+    reverse_proxy host.docker.internal:8081
+
+    encode gzip zstd
+
+    header {
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+    }
+
+    log {
+        output file /data/access.log
+        format json
+    }
+}
+
+# NETDATA DEPLOYMENT
+:8082 {
+    reverse_proxy netdata:19999
+    encode gzip zstd
+
+    header {
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+    }
+}
+
+# PORTAINER DEPLOYMENT
+:8083 {
+    reverse_proxy portainer:9000 {
+        header_up Origin {scheme}://{host}
+    }
+    encode gzip zstd
+
+    header {
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+    }
+}
+
+# PAPERLESS DEPLOYMENT
+:8084 {
+    reverse_proxy host.docker.internal:8084
+    encode gzip zstd
+
+    header {
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+    }
+}
+
+# N8N DEPLOYMENT
+:8085 {
+    reverse_proxy n8n:5678 {
+        flush_interval -1
+    }
+}
