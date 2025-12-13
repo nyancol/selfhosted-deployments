@@ -1,0 +1,29 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:testing
+    container_name: vaultwarden
+    restart: always
+    environment:
+      ADMIN_TOKEN: ${ADMIN_TOKEN}
+      DOMAIN: "https://vw.patates.club"  # required when using a reverse proxy; your domain; vaultwarden needs to know it's https to work properly with attachments
+      SIGNUPS_ALLOWED: "false"
+      SSO_ENABLED: "true"
+      SSO_AUTHORITY: "https://pocketid.patates.club"
+      SSO_CLIENT_ID: ${POCKET_CLIENT_ID}
+      SSO_CLIENT_SECRET: ${POCKET_CLIENT_SECRET}
+      LOG_LEVEL: "info,vaultwarden::sso=debug"
+      SMTP_HOST: "in-v3.mailjet.com"
+      SMTP_FROM: ${MAILJET_SENDER}
+      SMTP_PORT: 587
+      SMTP_SECURITY: starttls
+      SMTP_USERNAME: ${MAILJET_CLIENT_ID}
+      SMTP_PASSWORD: ${MAILJET_CLIENT_SECRET}
+    volumes:
+      - ./vw-data:/data # the path before the : can be changed
+    networks:
+      - caddy_public
+
+networks:
+  caddy_public:
+    driver: bridge
+    name: "caddy_public"
