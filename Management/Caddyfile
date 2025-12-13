@@ -1,0 +1,56 @@
+# IMMICH DEPLOYMENT
+:8080 {
+    reverse_proxy immich-server:2283
+
+    encode gzip zstd
+
+    header {
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+    }
+
+    log {
+        output file /data/access.log
+        format json
+    }
+}
+
+
+# POCKET ID DEPLOYMENT
+:8081 {
+    reverse_proxy pocket-id:1411 {
+        header_up Origin {scheme}://{host}
+    }
+    encode gzip zstd
+
+    header {
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "no-referrer"
+    }
+}
+
+# ARCANE DEPLOYMENT
+:8082 {
+    reverse_proxy arcane:3552 {
+        header_up Origin {scheme}://{host}
+    }
+    encode gzip zstd
+}
+
+# N8N DEPLOYMENT
+:8085 {
+    reverse_proxy n8n:5678 {
+        flush_interval -1
+    }
+}
+
+# VAULTWARDEN DEPLOYMENT
+:8084 {
+  encode zstd gzip
+
+  reverse_proxy vaultwarden:80 {
+        header_up X-Real-IP {remote_host}
+  }
+}

@@ -1,0 +1,89 @@
+services:
+  caddy:
+    image: caddy:2
+    container_name: reverse_proxy_caddy
+    restart: unless-stopped
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    networks:
+      - caddy_public
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./caddy_data:/data
+      - ./caddy_config:/config
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: reverse_proxy_cloudflared
+    restart: unless-stopped
+    networks:
+      - caddy_public
+    depends_on:
+      - caddy
+    command: tunnel run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    env_file:
+      - .env
+
+  pocket-id:
+    image: ghcr.io/pocket-id/pocket-id:v1
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - caddy_public
+    ports:
+      - 1411:1411
+    volumes:
+      - "./data:/app/data"
+      - "./pocket_id.key:/app/pocket_id.key"
+    # Optional healthcheck
+    healthcheck:
+      test: [ "CMD", "/app/pocket-id", "healthcheck" ]
+      interval: 1m30s
+      timeout: 5s
+      retries: 2
+      start_period: 10s
+
+  arcane:
+    image: ghcr.io/getarcaneapp/arcane:latest
+    container_name: arcane
+    env_file: .env
+    networks:
+      - caddy_public
+    ports:
+      - '3552:3552'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - arcane-data:/app/data
+      - /home/yann/Documents/selfhosted-deployments:/app/data/projects
+    environment:
+      - APP_URL=https://arcane.patates.club
+      - PUID=1000
+      - PGID=1000
+      - LOG_LEVEL=debug
+#      - OIDC_ENABLED=true
+#      - OIDC_CLIENT_ID=${ARCANE_OIDC_CLIENT_ID}
+#      - OIDC_CLIENT_SECRET=${ARCANE_OIDC_CLIENT_SECRET}
+#      - OIDC_ISSUER_URL=https://pocketid.patates.club
+#      - OIDC_ADMIN_CLAIM=groups
+#      - OIDC_ADMIN_VALUE=arcane-admins
+#      - OIDC_SCOPES=openid email profile
+#      - OIDC_MERGE_ACCOUNTS=false
+      - ENCRYPTION_KEY=${ARCANE_ENCRYPTION_KEY}
+      - JWT_SECRET=${ARCANE_JWT_TOKEN}
+      - DATABASE_URL=file:data/arcane.db?_pragma=journal_mode(WAL)&_pragma=busy_timeout(2500)&_txlock=immediate
+
+    restart: unless-stopped
+
+
+networks:
+  caddy_public:
+    driver: bridge
+    name: "caddy_public"
+
+volumes:
+  arcane-data:
+    driver: local
