@@ -1,6 +1,6 @@
 services:
   vaultwarden:
-    image: vaultwarden/server:testing
+    image: vaultwarden/server:latest
     container_name: vaultwarden
     restart: always
     environment:
@@ -22,8 +22,12 @@ services:
       - ./vw-data:/data # the path before the : can be changed
     networks:
       - caddy_public
+      - ofelia_net
 
 networks:
   caddy_public:
     driver: bridge
     name: "caddy_public"
+  ofelia_net:
+    driver: bridge
+    name: "ofelia_net"

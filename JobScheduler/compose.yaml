@@ -1,0 +1,20 @@
+services:
+  ofelia:
+    image: mcuadros/ofelia:latest
+    container_name: ofelia
+    command: daemon --docker
+    networks:
+      - ofelia_net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./ofelia-job-executions:/ofelia-job-executions
+    labels:
+      ofelia.save-folder: "/ofelia-job-executions"
+      ofelia.job-exec.vaultwarden-db-backup-creation.schedule: "@daily"
+      ofelia.job-exec.vaultwarden-db-backup-creation.container: "vaultwarden"
+      ofelia.job-exec.vaultwarden-db-backup-creation.command: "/vaultwarden backup"
+
+networks:
+  ofelia_net:
+    driver: bridge
+    name: "ofelia_net"
