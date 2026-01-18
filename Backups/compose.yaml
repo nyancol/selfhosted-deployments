@@ -17,7 +17,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/lib/zerobyte:/var/lib/zerobyte
       - /home/yann/nextcloud/immish_lib:/immish-data
-      - /app/data/projects/VaultWarden/data/projects/VaultWarden/vw-data:/vw-data
+      - /home/yann/Documents/selfhosted-deployments/VaultWarden/vw-data:/vw-data
 
 networks:
   caddy_public:
