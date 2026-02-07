@@ -4,7 +4,7 @@ services:
     # image: bentopdfteam/bentopdf:latest     # Alternative: Docker Hub
     container_name: bentopdf
     ports:
-      - '3000:8080'
+      - '3001:8080'
     restart: unless-stopped
     networks:
       - caddy_public
