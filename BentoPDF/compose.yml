@@ -6,3 +6,10 @@ services:
     ports:
       - '3000:8080'
     restart: unless-stopped
+    networks:
+      - caddy_public
+
+networks:
+  caddy_public:
+    driver: bridge
+    name: "caddy_public"
