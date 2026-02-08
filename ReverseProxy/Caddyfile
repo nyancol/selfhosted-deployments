@@ -58,18 +58,13 @@
 
 # ZEROBYTE DEPLOYMENT
 :8086 {
-  encode zstd gzip
-
-  reverse_proxy zerobyte:4096 {
-        header_up X-Real-IP {remote_host}
-  }
+    encode zstd gzip
+    reverse_proxy zerobyte:4096
 }
 
 # HOMARR DEPLOYMENT
 :8087 {
-  encode zstd gzip
-
   reverse_proxy homarr:7575 {
-        header_up X-Real-IP {remote_host}
+      header_up X-Real-IP {remote_host}
   }
 }
