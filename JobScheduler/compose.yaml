@@ -13,9 +13,9 @@ services:
       ofelia.job-exec.vaultwarden-db-backup-creation.schedule: "@daily"
       ofelia.job-exec.vaultwarden-db-backup-creation.container: "vaultwarden"
       ofelia.job-exec.vaultwarden-db-backup-creation.command: "/vaultwarden backup"
-      ofelia.job-exec.vaultwarden-db-backup-creation.schedule: "@daily"
-      ofelia.job-exec.vaultwarden-db-backup-creation.container: "vaultwarden"
-      ofelia.job-exec.vaultwarden-db-backup-creation.command: "find /data -regextype posix-extended -type f -regex '.*db_[0-9]{8}_000000.sqlite3.*' | sort -n | head -n -1 | xargs -r rm -f"
+      ofelia.job-exec.vaultwarden-db-backup-cleanup.schedule: "@daily"
+      ofelia.job-exec.vaultwarden-db-backup-cleanup.container: "vaultwarden"
+      ofelia.job-exec.vaultwarden-db-backup-cleanup.command: "find /data -regextype posix-extended -type f -regex '.*db_[0-9]{8}_000000.sqlite3.*' | sort -n | head -n -1 | xargs -r rm -f"
 
 networks:
   ofelia_net:
