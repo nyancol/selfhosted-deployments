@@ -72,8 +72,8 @@ services:
       - IMMICH_API_KEY=${IMMICH_API_KEY}
       - IMMICH_BASE_URL=${IMMICH_BASE_URL}
     volumes:
-      - ./config:/app/config
-      - ./output:/app/output
+      - ${IMMICH_DATA_BASEPATH}/selfie-timelapse/config:/app/config
+      - ${IMMICH_DATA_BASEPATH}/selfie-timelapse/output:/app/output
     restart: unless-stopped
 volumes:
   model-cache:
