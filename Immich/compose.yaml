@@ -60,6 +60,21 @@ services:
     shm_size: 128mb
     restart: always
 
+  immich-selfie-timelapse:
+    image: arnaudcayrol/immich-selfie-timelapse
+    container_name: immich-selfie-timelapse
+    user: 1000:1000
+    networks:
+      - caddy_internal
+    ports:
+      - "5000:5000"
+    environment:
+      - IMMICH_API_KEY=${IMMICH_API_KEY}
+      - IMMICH_BASE_URL=${IMMICH_BASE_URL}
+    volumes:
+      - ./config:/app/config
+      - ./output:/app/output
+    restart: unless-stopped
 volumes:
   model-cache:
 
