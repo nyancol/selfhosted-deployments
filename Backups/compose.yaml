@@ -20,6 +20,8 @@ services:
       - /var/lib/zerobyte:/var/lib/zerobyte
       - /home/yann/nextcloud/immish_lib:/immish-data
       - /home/yann/Documents/selfhosted-deployments/VaultWarden/vw-data:/vw-data
+      - /home/yann/Documents/selfhosted-deployments/VaultWarden/vw-data:/vw-data
+      - /home/yann/Documents/selfhosted-deployments/ReverseProxy/:/pocket-id
 
 networks:
   caddy_public:
