@@ -38,7 +38,6 @@ services:
       - 1411:1411
     volumes:
       - "./data:/app/data"
-      - "./pocket_id.key:/app/pocket_id.key"
     # Optional healthcheck
     healthcheck:
       test: [ "CMD", "/app/pocket-id", "healthcheck" ]
