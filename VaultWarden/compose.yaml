@@ -19,7 +19,7 @@ services:
       SMTP_USERNAME: ${MAILJET_CLIENT_ID}
       SMTP_PASSWORD: ${MAILJET_CLIENT_SECRET}
     volumes:
-      - ./vw-data:/data # the path before the : can be changed
+      - ${VW_DATA}:/data # the path before the : can be changed
     networks:
       - caddy_public
       - ofelia_net
