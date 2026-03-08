@@ -18,10 +18,10 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/lib/zerobyte:/var/lib/zerobyte
-      - /home/yann/nextcloud/immish_lib:/immish-data
-      - /home/yann/Documents/selfhosted-deployments/VaultWarden/vw-data:/vw-data
-      - /home/yann/Documents/selfhosted-deployments/VaultWarden/vw-data:/vw-data
-      - /home/yann/Documents/selfhosted-deployments/ReverseProxy/:/pocket-id
+      - ${DATA_DIR}/immich-data:/immich-data
+      - ${DATA_DIR}/vaultwarden-data:/vw-data
+      - ${DATA_DIR}/pocket-id-data/:/pocket-id
+      - ${DATA_DIR}/caddy-data/:/pocket-id
 
 networks:
   caddy_public:
