@@ -19,9 +19,9 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/lib/zerobyte:/var/lib/zerobyte
       - ${DATA_DIR}/immich-data:/immich-data
-      - ${DATA_DIR}/vaultwarden-data:/vw-data
-      - ${DATA_DIR}/pocket-id-data/:/pocket-id
-      - ${DATA_DIR}/caddy-data/:/pocket-id
+      - ${DATA_DIR}/vaultwarden-data:/vaultwarden-data
+      - ${DATA_DIR}/pocket-id-data/:/pocket-id-data
+      - ${DATA_DIR}/caddy-data/:/caddy-id-data
 
 networks:
   caddy_public:
