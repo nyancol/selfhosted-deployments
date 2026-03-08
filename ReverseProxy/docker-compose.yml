@@ -11,8 +11,8 @@ services:
       - caddy_public
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./caddy_data:/data
-      - ./caddy_config:/config
+      - ${CADDY_DATA}/caddy_data:/data
+      - ${CADDY_DATA}/caddy_config:/config
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
@@ -37,7 +37,7 @@ services:
     ports:
       - 1411:1411
     volumes:
-      - "./data:/app/data"
+      - "${POCKET_ID_DATA}/data:/app/data"
     # Optional healthcheck
     healthcheck:
       test: [ "CMD", "/app/pocket-id", "healthcheck" ]
