@@ -19,7 +19,7 @@ services:
       ofelia.job-exec.vaultwarden-db-backup-cleanup.command: "find /data -regextype posix-extended -type f -regex '.*db_[0-9]{8}_000000.sqlite3.*' | sort -n | head -n -1 | xargs -r rm -f"
       ofelia.job-exec.backup-integrity-immich.schedule: "@daily"
       ofelia.job-exec.backup-integrity-immich.container: "ofelia"
-      ofelia.job-exec.backup-integrity-immich.command: "restic check --read-data-subset '10%' -r "http://${RESTIC_REPOSITORY_BASE}/immich-data"
+      ofelia.job-exec.backup-integrity-immich.command: "restic check --read-data-subset '10%' -r http://${RESTIC_REPOSITORY_BASE}/immich-data"
 
 networks:
   ofelia_net:
