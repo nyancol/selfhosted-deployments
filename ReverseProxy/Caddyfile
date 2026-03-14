@@ -39,11 +39,9 @@
     encode gzip zstd
 }
 
-# N8N DEPLOYMENT
+# OPENCLAW DEPLOYMENT
 :8085 {
-    reverse_proxy n8n:5678 {
-        flush_interval -1
-    }
+    reverse_proxy openclaw-gateway:18789 {
 }
 
 # VAULTWARDEN DEPLOYMENT
@@ -68,3 +66,4 @@
       header_up X-Real-IP {remote_host}
   }
 }
+
