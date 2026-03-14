@@ -41,7 +41,8 @@
 
 # OPENCLAW DEPLOYMENT
 :8085 {
-    reverse_proxy openclaw-gateway:18789 {
+    encode zstd gzip
+    reverse_proxy openclaw-gateway:18789
 }
 
 # VAULTWARDEN DEPLOYMENT
