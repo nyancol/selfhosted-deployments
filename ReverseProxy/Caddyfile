@@ -12,8 +12,8 @@
             client_id {$POCKET_CLIENT_ID}
             client_secret {$POCKET_CLIENT_SECRET}
             scopes openid email profile
-            base_auth_url https://patates.club
-            metadata_url https://patates.club/.well-known/openid-configuration
+            base_auth_url https://pocketid.patates.club
+            metadata_url https://pocketid.patates.club/.well-known/openid-configuration
         }
 
         authentication portal myportal {
