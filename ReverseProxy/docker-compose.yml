@@ -2,6 +2,7 @@ services:
   caddy:
     container_name: reverse_proxy_caddy
     image: ghcr.io/authcrunch/authcrunch:v1.0.28
+    env_file: .env
     restart: unless-stopped
     expose:
       - "8080"
