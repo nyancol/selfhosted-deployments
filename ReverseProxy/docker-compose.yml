@@ -1,8 +1,7 @@
 services:
   caddy:
     container_name: reverse_proxy_caddy
-    build:
-      dockerfile: ./caddy.Dockerfile
+    image: ghcr.io/authcrunch/authcrunch:v1.0.28
     restart: unless-stopped
     expose:
       - "8080"

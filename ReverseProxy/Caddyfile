@@ -1,3 +1,43 @@
+{
+    # Port to listen on
+    http_port 443
+
+    # Configure caddy-security.
+    order authenticate before respond
+    security {
+        oauth identity provider generic {
+            delay_start 3
+            realm generic
+            driver generic
+            client_id {$POCKET_CLIENT_ID}
+            client_secret {$POCKET_CLIENT_SECRET}
+            scopes openid email profile
+            base_auth_url https://patates.club
+            metadata_url https://patates.club/.well-known/openid-configuration
+        }
+
+        authentication portal myportal {
+            crypto default token lifetime 3600 # Seconds until you have to re-authenticate
+            enable identity provider generic
+            cookie insecure off # Set to "on" if you're not using HTTPS
+            # cookie domain service.example.com - If using multiple clients/portals you have to set the cookie domain for each one so they do not conflict when trying to refresh the session.
+            trust login redirect uri domain exact service.example.com path prefix /
+
+            transform user {
+                match realm generic
+                action add role user
+            }
+        }
+
+        authorization policy mypolicy {
+            set auth url /caddy-security/oauth2/generic
+            allow roles user
+            inject headers with claims
+        }
+    }
+}
+
+
 # IMMICH DEPLOYMENT
 :8080 {
     reverse_proxy immich-server:2283
@@ -41,8 +81,8 @@
 
 # OPENCLAW DEPLOYMENT
 :8085 {
-    authenticate with oauth2_provider
-    authorize with policy1
+    authenticate with myportal
+    authorize with mypolicy
 
     header {
         X-Forwarded-For {remote_addr}
