@@ -41,7 +41,14 @@
 
 # OPENCLAW DEPLOYMENT
 :8085 {
-    encode zstd gzip
+    authenticate with oauth2_provider
+    authorize with policy1
+
+    header {
+        X-Forwarded-For {remote_addr}
+        X-Real-IP {remote_addr}
+        X-Forwarded-User {http.auth.user.email}
+    }
     reverse_proxy openclaw-gateway:18789
 }
 

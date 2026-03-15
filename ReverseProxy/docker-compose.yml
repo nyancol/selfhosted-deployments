@@ -1,7 +1,8 @@
 services:
   caddy:
-    image: caddy:2
     container_name: reverse_proxy_caddy
+    build:
+      dockerfile: ./caddy.Dockerfile
     restart: unless-stopped
     expose:
       - "8080"
