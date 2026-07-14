@@ -63,7 +63,7 @@
 
 
 # HERMES DASHBOARD DEPLOYMENT
-:8087 {
+:8088 {
     encode zstd gzip
     reverse_proxy hermes_dashboard:9119
 }
