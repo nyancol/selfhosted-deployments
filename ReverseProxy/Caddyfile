@@ -62,9 +62,8 @@
 }
 
 
-# HERMES DASHBOARD DEPLOYMENT
+# OMNIGENT DASHBOARD DEPLOYMENT
 :8087 {
-    encode zstd gzip
-    reverse_proxy hermes-dashboard:9119
+    reverse_proxy omnigent:8000
 }
 
