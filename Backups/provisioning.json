@@ -1,0 +1,78 @@
+{
+	"version": 1,
+	"repositories": [
+		{
+			"id": "immich-in-pi",
+			"organizationId": "019cce20-95f9-7000-b5e6-7782bc19f6b8",
+			"name": "Immich in Pi",
+			"backend": "rest",
+			"compressionMode": "auto",
+			"config": {
+				"url": "http://192.168.1.121:8000",
+				"path": "pocket-id-data",
+				"isExistingRepository": true
+			}
+		}, {
+			"id": "vaultwarden-in-pi",
+			"organizationId": "019cce20-95f9-7000-b5e6-7782bc19f6b8",
+			"name": "VaultWarden in Pi",
+			"backend": "rest",
+			"compressionMode": "auto",
+			"config": {
+				"url": "http://192.168.1.121:8000",
+				"path": "vaultwarden-data",
+				"isExistingRepository": true
+			}
+		}, {
+			"id": "pocketid-in-pi",
+			"organizationId": "019cce20-95f9-7000-b5e6-7782bc19f6b8",
+			"name": "PocketID in Pi",
+			"backend": "rest",
+			"compressionMode": "auto",
+			"config": {
+				"url": "http://192.168.1.121:8000",
+				"path": "pocket-id-data",
+				"isExistingRepository": true
+			}
+		}
+	],
+	"volumes": [
+		{
+			"id": "caddy",
+			"organizationId": "019cce20-95f9-7000-b5e6-7782bc19f6b8",
+			"name": "Caddy",
+			"backend": "directory",
+			"autoRemount": true,
+			"config": {
+				"path": "/caddy-id-data"
+			}
+		}, {
+			"id": "immich",
+			"organizationId": "019cce20-95f9-7000-b5e6-7782bc19f6b8",
+			"name": "Immich",
+			"backend": "directory",
+			"autoRemount": true,
+			"config": {
+				"path": "/immich-data"
+			}
+		}, {
+			"id": "vaultwarden",
+			"organizationId": "019cce20-95f9-7000-b5e6-7782bc19f6b8",
+			"name": "VaultWarden",
+			"backend": "directory",
+			"autoRemount": true,
+			"config": {
+				"path": "/vaultwarden-data"
+			}
+		}, {
+			"id": "pocket-id",
+			"organizationId": "019cce20-95f9-7000-b5e6-7782bc19f6b8",
+			"name": "Pocket ID",
+			"backend": "directory",
+			"autoRemount": true,
+			"config": {
+				"path": "/pocket-id-data"
+			}
+		}
+	]
+}
