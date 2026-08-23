@@ -62,9 +62,9 @@
 }
 
 
-# HERMES DASHBOARD DEPLOYMENT
-:8087 {
+# BRICK TRACKER EPLOYMENT
+:8088 {
     encode zstd gzip
-    reverse_proxy hermes-dashboard:9119
+    reverse_proxy brick-tracker:5000
 }
 
