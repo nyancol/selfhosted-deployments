@@ -61,6 +61,11 @@
     reverse_proxy zerobyte:4096
 }
 
+# DAWARICH TRACKER EPLOYMENT
+:8087 {
+    encode zstd gzip
+    reverse_proxy dawarich_app:3000
+}
 
 # BRICK TRACKER EPLOYMENT
 :8088 {
@@ -68,8 +73,3 @@
     reverse_proxy brick-tracker:5000
 }
 
-# DAWARICH TRACKER EPLOYMENT
-:8089 {
-    encode zstd gzip
-    reverse_proxy dawarich_app:3000
-}
