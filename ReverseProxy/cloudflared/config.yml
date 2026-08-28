@@ -18,3 +18,4 @@ ingress:
     service: http://caddy:8087
   - hostname: brique.patates.club
     service: http://caddy:8088
+  - service: http_status:404
