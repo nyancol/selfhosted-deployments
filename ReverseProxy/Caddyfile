@@ -68,3 +68,8 @@
     reverse_proxy brick-tracker:5000
 }
 
+# DAWARICH TRACKER EPLOYMENT
+:8089 {
+    encode zstd gzip
+    reverse_proxy dawarich_app:3000
+}
