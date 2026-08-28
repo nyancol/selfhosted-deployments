@@ -1,0 +1,20 @@
+tunnel: 7ed7f3d1-2aa3-43ee-81d1-99ebcb71716e
+# credentials-file: /etc/cloudflared/7ed7f3d1-2aa3-43ee-81d1-99ebcb71716e.json
+
+ingress:
+  - hostname: photos.patates.club
+    service: http://caddy:8080
+  - hostname: pocketid.patates.club
+    service: http://caddy:8081
+  - hostname: arcane.patates.club
+    service: http://caddy:8082
+  - hostname: vw.patates.club
+    service: http://caddy:8084
+  - hostname: backup.patates.club
+    service: http://caddy:8085
+  - hostname: budget.patates.club
+    service: http://caddy:8086
+  - hostname: timeline.patates.club
+    service: http://caddy:8087
+  - hostname: brique.patates.club
+    service: http://caddy:8088
