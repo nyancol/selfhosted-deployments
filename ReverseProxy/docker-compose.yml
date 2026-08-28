@@ -25,7 +25,7 @@ services:
       - caddy_public
     depends_on:
       - caddy
-    command: tunnel run --config /etc/cloudflared/config.yml --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    command: tunnel run --config /etc/cloudflared/config.yml
     env_file:
       - .env
     volumes:

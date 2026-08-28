@@ -1,5 +1,5 @@
 tunnel: 7ed7f3d1-2aa3-43ee-81d1-99ebcb71716e
-# credentials-file: /etc/cloudflared/7ed7f3d1-2aa3-43ee-81d1-99ebcb71716e.json
+credentials-file: /etc/cloudflared/7ed7f3d1-2aa3-43ee-81d1-99ebcb71716e.json
 
 ingress:
   - hostname: photos.patates.club
