@@ -63,7 +63,6 @@
 
 # DAWARICH TRACKER EPLOYMENT
 :8087 {
-    encode zstd gzip
     reverse_proxy dawarich_app:3000 {
        header_up X-Real-IP {remote_addr}
        header_up X-Forwarded-Proto https
