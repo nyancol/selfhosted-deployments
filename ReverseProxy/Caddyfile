@@ -64,7 +64,10 @@
 # DAWARICH TRACKER EPLOYMENT
 :8087 {
     encode zstd gzip
-    reverse_proxy dawarich_app:3000
+    reverse_proxy dawarich_app:3000 {
+          header_up X-Forwarded-Proto https
+          header_up X-Forwarded-Host {host}
+     }
 }
 
 # BRICK TRACKER EPLOYMENT
