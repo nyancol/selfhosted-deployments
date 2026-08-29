@@ -63,8 +63,13 @@
 
 # DAWARICH TRACKER EPLOYMENT
 :8087 {
+X-Real-IP
     encode zstd gzip
-    reverse_proxy dawarich_app:3000
+    reverse_proxy dawarich_app:3000 {
+       header_up X-Real-IP {remote_host}
+       header_up X-Forwarded-Proto {remote_host}
+       header_up X-Forwarded-For {remote_host}
+    }
 }
 
 # BRICK TRACKER EPLOYMENT
