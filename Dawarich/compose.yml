@@ -19,7 +19,6 @@ services:
       --appendonly no
     networks:
       - dawarich
-      - caddy_public
     volumes:
       - dawarich_shared:/data
     restart: always
@@ -63,6 +62,7 @@ services:
       - dawarich_db_data:/dawarich_db_data
     networks:
       - dawarich
+      - caddy_public
     ports:
       - "${DAWARICH_APP_PORT:-3000}:3000"
     stdin_open: true
