@@ -61,7 +61,7 @@
     reverse_proxy zerobyte:4096
 }
 
-# DAWARICH TRACKER EPLOYMENT
+# DAWARICH TRACKER DEPLOYMENT
 :8087 {
     encode zstd gzip
     reverse_proxy dawarich_app:3000 {
@@ -70,9 +70,14 @@
      }
 }
 
-# BRICK TRACKER EPLOYMENT
+# BRICK TRACKER DEPLOYMENT
 :8088 {
     encode zstd gzip
     reverse_proxy brick-tracker:5000
 }
 
+# OPENCODE EPLOYMENT
+:8089 {
+    encode zstd gzip
+    reverse_proxy host.docker.internal:4098
+}
