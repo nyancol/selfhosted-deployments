@@ -76,7 +76,13 @@
     reverse_proxy brick-tracker:5000
 }
 
-# OPENCODE EPLOYMENT
+# BRICK TRACKER DEVELOPMENT
+:8090 {
+    encode zstd gzip
+    reverse_proxy host.docker.internal:5173
+}
+
+# OPENCODE DEPLOYMENT
 :8089 {
     encode zstd gzip
     reverse_proxy host.docker.internal:4098
