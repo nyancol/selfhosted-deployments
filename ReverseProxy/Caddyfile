@@ -87,3 +87,9 @@
     encode zstd gzip
     reverse_proxy host.docker.internal:4098
 }
+
+# LGTM DEPLOYMENT
+:8091 {
+    encode zstd gzip
+    reverse_proxy lgtm:4318
+}
