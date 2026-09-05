@@ -91,5 +91,5 @@
 # LGTM DEPLOYMENT
 :8091 {
     encode zstd gzip
-    reverse_proxy lgtm:3000
+    reverse_proxy lgtm:3001
 }
