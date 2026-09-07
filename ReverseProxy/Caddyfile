@@ -73,7 +73,10 @@
 # BRICK TRACKER DEPLOYMENT
 :8088 {
     encode zstd gzip
-    reverse_proxy brick-tracker:5000
+    reverse_proxy brick-tracker:5000 {
+        header_up X-Forwarded-Proto https
+        header_up X-Forwarded-Host {host}
+    }
 }
 
 # BRICK TRACKER DEVELOPMENT
