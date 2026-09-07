@@ -79,7 +79,10 @@
 # BRICK TRACKER DEVELOPMENT
 :8090 {
     encode zstd gzip
-    reverse_proxy host.docker.internal:5173
+    reverse_proxy brick-tracker-preprod:5173 {
+        header_up X-Forwarded-Proto https
+        header_up X-Forwarded-Host {host}
+    }
 }
 
 # OPENCODE DEPLOYMENT
