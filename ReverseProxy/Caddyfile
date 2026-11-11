@@ -99,3 +99,12 @@
         header_up X-Forwarded-Host {host}
     }
 }
+
+# PLACES DEPLOYMENT
+:8093 {
+    encode zstd gzip
+    reverse_proxy places:5173 {
+        header_up X-Forwarded-Proto https
+        header_up X-Forwarded-Host {host}
+    }
+}
