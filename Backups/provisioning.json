@@ -34,6 +34,17 @@
 				"path": "pocket-id-data",
 				"isExistingRepository": true
 			}
+		}, {
+			"id": "places-in-pi",
+			"organizationId": "019cce20-95f9-7000-b5e6-7782bc19f6b8",
+			"name": "Places in Pi",
+			"backend": "rest",
+			"compressionMode": "auto",
+			"config": {
+				"url": "http://192.168.1.121:8000",
+				"path": "places-data",
+				"isExistingRepository": false
+			}
 		}
 	],
 	"volumes": [
@@ -72,6 +83,15 @@
 			"autoRemount": true,
 			"config": {
 				"path": "/pocket-id-data"
+			}
+		}, {
+			"id": "places",
+			"organizationId": "019cce20-95f9-7000-b5e6-7782bc19f6b8",
+			"name": "Places",
+			"backend": "directory",
+			"autoRemount": true,
+			"config": {
+				"path": "/places-data"
 			}
 		}
 	]

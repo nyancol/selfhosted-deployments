@@ -22,8 +22,17 @@ services:
       - ${DATA_DIR}/vaultwarden-data:/vaultwarden-data
       - ${DATA_DIR}/pocket-id-data/:/pocket-id-data
       - ${DATA_DIR}/caddy-data/:/caddy-id-data
+      # Places prod SQLite (named volume from the places stack, read-only:
+      # restic snapshots app.db + -wal + -shm together; SQLite replays WAL on restore).
+      - places_places-data:/places-data:ro
 
 networks:
   caddy_public:
     driver: bridge
     name: "caddy_public"
+
+# Named volume owned by the places stack (project `places`, volume `places-data`).
+# External: zerobyte never creates or writes it (ro mount above).
+volumes:
+  places_places-data:
+    external: true
